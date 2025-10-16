@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+h1 {
+  background-color: transparent;
+}
+p {
+  background-color: transparent;
+}
+h2 {
+  background-color: transparent;
+}
+* {
+  background-color: #0b0e1a;
+}
+body {
+  margin: 0;
+  font-family: Unbounded, sans-serif;
+  background-color: #0b0e1a;
+  color: #fff;
+  line-height: 1.6;
+}
+
+header {
+  font-size: 2.6vh;
+  background: #0b0e1a;
+}
+
+.navbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3vh 5vh;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 8vh;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-outline,
+.btn-primary {
+  padding: 1vh 2vh;
+  border-radius: 2vh;
+  border: none;
+  cursor: pointer;
+  margin-left: 1vh;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #00bfff;
+  color: #00bfff;
+}
+
+.btn-primary {
+  background: #00bfff;
+  color: #fff;
+  font-size: 2.5vh;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6vh;
+  font-size: 5.2vh;
+}
+
+.hero-text h1 span {
+  color: #00bfff;
+}
+
+.hero-image img {
+  width: 75vh;
+  border-radius: 50%;
+  background: #1c1f2e;
+  padding: 2vh;
+}
+
+.banner {
+  background: #2c2c2c;
+  text-align: center;
+  padding: 8vh 3vh;
+  font-size: 4vh;
+}
+
+.banner h2 {
+  color: #fff;
+  margin-top: 10px;
+}
+.features h2{
+  font-size: 6vh;
+}
+
+.features p{
+  font-size: 3vh;
+}
+.features {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.feature-logo img {
+  width: 40vh;
+  margin-top: 2vh;
+  margin-left: 80vh;
+}
+
+.chat-examples {
+  text-align: center;
+  padding: 0px 30px;
+}
+
+.examples {
+  display: flex;
+  justify-content: center;
+  gap: 5vh;
+  margin-top: 2vh;
+}
+
+.chat-box {
+  background: #2c2c2c;
+  padding: 2vh;
+  border-radius: 1vh;
+  width: 35vh;
+  height: 14vh;
+  padding-top: 3.5vh;
+  font-size: 2.5vh;
+}
+
+.chat-box.highlight {
+  background: #00bfff;
+  color: #000;
+}
+
+.trial {
+  background: #2c2c2c;
+  text-align: center;
+  gap: 0vh;
+  font-size: 4vh;
+  padding: 2vh 2vh;
+  margin-top: 3vh;
+}
+
+.trial h2 span {
+  color: #00bfff;
+}
+
+footer {
+  background: #fff;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  padding: 3vh 7vh;
+  flex-wrap: wrap;
+  
+}
+
+footer h3 {
+  background-color: white;
+  margin-top: 0;
+  font-size: 4vh;
+}
+
+footer p {
+  max-width: 40vh;
+  background-color: white;
+}
+
+.copyright {
+  width: 100%;
+  text-align: center;
+  margin-top: 2vh;
+  font-size: 2vh;
+}
+
+.footer-right {
+  background-color: white;
+}
+
+b {
+  font-size: 3vh;
+  background-color: #fff;
+}
+span{
+  background-color: transparent;
+}
+
+#em{
+  font-size: 3vh;
+}
+
+.footer-left{
+  background-color: white;
+}

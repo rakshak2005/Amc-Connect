@@ -1,0 +1,97 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Campus Connect</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#featu">Features</a></li>
+                <li><a href="./botpage.html">Time-Table</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn-outline">Log In</button>
+                <button class="btn-primary" > <a href="./botpage.html" style="background-color: transparent;">Try Now</a></button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="blank" style="height: 12vh; background-color: #0b0e1a;"></div>
+    <section class="hero" id="hero">
+        <div class="hero-text">
+            <p class="tagline">Your native ChatBot.</p>
+            <h1>Talk To The <span>B.O.S.S.</span></h1>
+            <p class="subtext">B.O.S.S. - Bot for On-campus Student Solutions</p>
+        </div>
+        <div class="hero-image">
+            <img src="./src/assets/amc-logo.png" alt="AMC Campus Connect">
+        </div>
+    </section>
+
+    <!-- Banner -->
+    <section class="banner" id="featu">
+        <p>Timetable confusion? Exam dates? Event updates? Placement alerts?</p>
+        <h2 style="font-size: 20vh;">ASK THE B.O.S.S.</h2>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" >
+        <h2>Top Features Of Campus Connect</h2>
+        <p>From checking class timetables and receiving exam updates to staying informed about college events and getting the latest placement alerts, the chatbot ensures you never miss out on anything important...</p>
+        <div class="feature-logo">
+            <img src="./src/assets/AMC ENGG BLUE.png" alt="AMC Engineering College">
+        </div>
+    </section>
+
+    <!-- Chat Examples -->
+    <section class="chat-examples">
+        <h2 style="font-size: 4vh;">ASK ANYTHING. LITERALLY, ANYTHING.</h2>
+        <div class="examples">
+            <div class="chat-box">B.O.S.S., do we have any fest in this sem atleast?</div>
+            <div class="chat-box highlight">Hey, tell me about today’s classes, please.</div>
+            <div class="chat-box">What is special in the college canteen today?</div>
+        </div>
+    </section>
+
+    <!-- Trial Section -->
+    <section class="trial">
+        <p style="color: #2c2c2c;"> empty space </p>
+        <h2>Free Trial for your<br><span>4 years in campus :)</span></h2>
+        <p>Don’t blame us if you take longer to finish your BE Degree.</p>
+        <button class="btn-primary" style="font-size: 3vh; margin-top: 2vh;">Ask Campus Connect</button>
+        <p style="color: #2c2c2c;"> empty space </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-left">
+            <h3 style="font-size: x-large;">Campus Connect</h3>
+            <p>The project Campus Connect is 
+a proposed chatbot for the college website that aims to provide students with 
+quick and reliable access to information. The chatbot is designed to answer 
+queries related to time-table, placement opportunities, upcoming events, canteen menu, and classroom numbers.</p>
+        </div>
+        <div class="footer-right" id="em">
+            <h3>Contact the developers</h3>
+            <p><b>Email:</b></p>
+            <p>1am23cd108@amceducation.in<br>
+            1am23cd085@amceducation.in<br>
+            1am23cd114@amceducation.in<br>
+            1am23cd092@amceducation.in<br>
+            </p>
+        </div>
+    
+    </footer>
+    <p class="copyright">© Team B-18</p>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
