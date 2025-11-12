@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Polls</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Applying the Inter font as the default */
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Custom style for the result bar animation */
         .result-bar-inner {
             transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
@@ -24,24 +20,18 @@
 
 <body class="bg-#0B0E1A flex items-center justify-center min-h-screen">
 
-    <!-- Main Poll Widget Container -->
     <div id="poll-widget" class="w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 sm:p-8 m-4">
         
-        <!-- Header Section -->
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-xl font-bold text-gray-800 dark:text-white">Campus Pulse 📊</h2>
             <span class="text-sm font-medium text-green-500 bg-green-100 dark:bg-green-900 dark:text-green-300 px-3 py-1 rounded-full">Live</span>
         </div>
 
-        <!-- Poll Question -->
         <p id="poll-question" class="text-gray-600 dark:text-gray-300 mb-6 text-base"></p>
 
-        <!-- Options / Results Container -->
         <div id="poll-options-container" class="space-y-3">
-            <!-- Options will be dynamically inserted here by JavaScript -->
         </div>
 
-        <!-- Footer with Total Votes -->
         <div class="mt-6 text-center">
             <p id="total-votes" class="text-sm text-gray-500 dark:text-gray-400 font-medium"></p>
         </div>
@@ -49,10 +39,8 @@
     </div>
 
     <script>
-        // --- DATA ---
-        // In a real application, this data would come from your backend server or a CMS.
         const pollData = {
-            id: 'fest-artist-2025-bengaluru', // Unique ID for this poll
+            id: 'fest-artist-2025-bengaluru',
             question: 'Which artist should we invite for the Colloseum?',
             options: [
                 { id: 'a', text: 'Rahul Dito', votes: 182 },
@@ -62,18 +50,11 @@
             ]
         };
 
-        // --- DOM ELEMENTS ---
         const pollQuestionEl = document.getElementById('poll-question');
         const optionsContainerEl = document.getElementById('poll-options-container');
         const totalVotesEl = document.getElementById('total-votes');
         const pollWidget = document.getElementById('poll-widget');
 
-        // --- LOGIC ---
-
-        /**
-         * Renders the poll. It checks if the user has already voted
-         * and shows either the voting options or the results.
-         */
         function renderPoll() {
             pollQuestionEl.textContent = pollData.question;
             const hasVoted = localStorage.getItem(`poll_voted_${pollData.id}`);
@@ -85,11 +66,8 @@
             }
         }
 
-        /**
-         * Displays the clickable options for the user to vote.
-         */
         function showVotingOptions() {
-            optionsContainerEl.innerHTML = ''; // Clear previous content
+            optionsContainerEl.innerHTML = '';
             pollData.options.forEach(option => {
                 const optionElement = document.createElement('div');
                 optionElement.className = 'p-4 border border-gray-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors duration-200';
@@ -102,16 +80,12 @@
             totalVotesEl.textContent = 'Cast your vote to see the results!';
         }
 
-        /**
-         * Displays the results of the poll with percentage bars.
-         */
         function showResults() {
-            optionsContainerEl.innerHTML = ''; // Clear previous content
+            optionsContainerEl.innerHTML = '';
             const totalVotes = pollData.options.reduce((sum, option) => sum + option.votes, 0);
             
             totalVotesEl.textContent = `Total Votes: ${totalVotes.toLocaleString()}`;
             pollWidget.dataset.voted = 'true';
-
 
             pollData.options.forEach(option => {
                 const percentage = totalVotes === 0 ? 0 : Math.round((option.votes / totalVotes) * 100);
@@ -119,15 +93,12 @@
                 const resultElement = document.createElement('div');
                 resultElement.className = 'result-item relative border border-gray-200 dark:border-slate-700 rounded-lg p-3 overflow-hidden';
 
-                // Background bar showing the percentage
                 const barElement = document.createElement('div');
                 barElement.className = 'result-bar-inner absolute top-0 left-0 h-full bg-indigo-100 dark:bg-indigo-900 rounded-lg';
-                // Use setTimeout to allow the element to render before applying width for a smooth animation
                 setTimeout(() => {
                     barElement.style.width = `${percentage}%`;
                 }, 100);
 
-                // Text content on top of the bar
                 const textContainer = document.createElement('div');
                 textContainer.className = 'relative z-10 flex justify-between items-center';
                 
@@ -149,30 +120,21 @@
             });
         }
         
-        /**
-         * Handles the click event when a user casts a vote.
-         * @param {Event} event - The click event object.
-         */
         function handleVote(event) {
             if (pollWidget.dataset.voted === 'true') return;
 
             const selectedOptionId = event.target.dataset.optionId;
 
-            // Find the selected option in our data and increment its vote count
             const selectedOption = pollData.options.find(o => o.id === selectedOptionId);
             if (selectedOption) {
                 selectedOption.votes++;
             }
 
-            // Mark that the user has voted for this poll in their browser's local storage
             localStorage.setItem(`poll_voted_${pollData.id}`, 'true');
 
-            // Re-render the poll to show the results
             showResults();
         }
 
-        // --- INITIAL RENDER ---
-        // Start the process when the page loads.
         document.addEventListener('DOMContentLoaded', renderPoll);
 
     </script>

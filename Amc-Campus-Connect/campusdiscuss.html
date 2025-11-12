@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Discussion Forum</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,48 +12,42 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Custom scrollbar for a cleaner look */
         #messages-container::-webkit-scrollbar {
             width: 6px;
         }
         #messages-container::-webkit-scrollbar-track {
-            background: #f1f5f9; /* slate-100 */
+            background: #f1f5f9;
         }
         #messages-container::-webkit-scrollbar-thumb {
-            background: #cbd5e1; /* slate-300 */
+            background: #cbd5e1;
             border-radius: 3px;
         }
         #messages-container::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; /* slate-400 */
+            background: #94a3b8;
         }
         .dark #messages-container::-webkit-scrollbar-track {
-            background: #1e293b; /* slate-800 */
+            background: #1e293b;
         }
         .dark #messages-container::-webkit-scrollbar-thumb {
-            background: #475569; /* slate-600 */
+            background: #475569;
         }
         .dark #messages-container::-webkit-scrollbar-thumb:hover {
-            background: #64748b; /* slate-500 */
+            background: #64748b;
         }
     </style>
 </head>
 <body class="bg-#0B0E1A flex items-center justify-center min-h-screen p-4">
 
-    <!-- Main Chat Application Container -->
     <div class="flex flex-col w-full max-w-2xl h-[90vh] bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border dark:border-slate-700">
         
-        <!-- Header -->
         <div class="p-4 border-b dark:border-slate-700 flex-shrink-0">
             <h2 class="text-xl font-bold text-center text-gray-800 dark:text-white">#general-discussion</h2>
             <p class="text-sm text-center text-gray-500 dark:text-gray-400">Talk about anything campus-related!</p>
         </div>
         
-        <!-- Messages Area -->
         <div id="messages-container" class="flex-1 p-4 overflow-y-auto space-y-4">
-            <!-- Messages will be dynamically inserted here -->
         </div>
 
-        <!-- Message Input Form -->
         <div class="p-4 bg-gray-50 dark:bg-slate-700/50 border-t dark:border-slate-700 flex-shrink-0">
             <form id="chat-form" class="flex items-center space-x-3">
                 <input type="text" id="message-input" placeholder="Type your message..." autocomplete="off" required class="flex-1 w-full px-4 py-2 bg-white dark:bg-slate-800 border dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -69,8 +61,6 @@
     </div>
 
     <script>
-        // --- MOCK DATA & CURRENT USER ---
-        // In a real app, this would come from a database and user session.
         const currentUser = { id: 'user_123', name: 'You', avatar: 'https://placehold.co/40x40/6366f1/ffffff?text=ME' };
         
         let messagesData = [
@@ -79,12 +69,10 @@
             { id: 3, sender: { name: 'Anjali K.', avatar: 'https://placehold.co/40x40/14b8a6/ffffff?text=AK' }, text: 'Also, is anyone selling their old physics textbook? DM me if you are!', timestamp: new Date('2025-10-16T20:40:25') },
         ];
 
-        // --- DOM ELEMENTS ---
         const messagesContainer = document.getElementById('messages-container');
         const chatForm = document.getElementById('chat-form');
         const messageInput = document.getElementById('message-input');
 
-        // --- HELPER FUNCTIONS ---
         function formatTimestamp(date) {
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         }
@@ -125,14 +113,12 @@
             return messageWrapper;
         }
 
-        // --- CORE LOGIC ---
         function renderMessages() {
             messagesContainer.innerHTML = '';
             messagesData.forEach(message => {
                 const messageEl = createMessageElement(message);
                 messagesContainer.appendChild(messageEl);
             });
-            // Auto-scroll to the bottom
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
@@ -153,10 +139,8 @@
             }
         }
 
-        // --- EVENT LISTENERS ---
         chatForm.addEventListener('submit', handleSendMessage);
         
-        // --- INITIAL RENDER ---
         document.addEventListener('DOMContentLoaded', renderMessages);
     </script>
 </body>

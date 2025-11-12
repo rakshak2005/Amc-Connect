@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notification Center</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,30 +12,27 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Styling for the unread indicator dot */
         .unread-dot::after {
             content: '';
             position: absolute;
             top: 50%;
-            right: 1.25rem; /* Corresponds to pr-5 on the parent */
+            right: 1.25rem; 
             transform: translateY(-50%);
             width: 8px;
             height: 8px;
-            background-color: #3b82f6; /* blue-500 */
+            background-color: #3b82f6; 
             border-radius: 50%;
         }
     </style>
 </head>
 <body class="bg-#0B0E1A flex items-center justify-center min-h-screen p-4">
 
-    <!-- Main Notification Box -->
     <div id="notification-box" class="w-full max-w-[200vh] bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border dark:border-slate-700">
         <div class="p-4 border-b dark:border-slate-700 flex justify-between items-center">
             <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Notifications</h3>
             <button id="mark-all-read" class="text-sm text-indigo-600 dark:text-indigo-400 hover:underline focus:outline-none">Mark all as read</button>
         </div>
         <div id="notification-list" class="max-h-[60vh] overflow-y-auto">
-           <!-- Notifications will be dynamically inserted here -->
         </div>
          <div id="empty-state" class="hidden text-center p-8">
             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -49,8 +44,6 @@
     </div>
 
     <script>
-        // --- MOCK DATA ---
-        // In a real app, you'd fetch this from your server.
         let notificationsData = [
             { id: 1, icon: '📢', title: 'Follow the college Dress code and wearing of uniform is compulsory - Principal', timestamp: new Date('2025-10-14T18:00:00'), read: true, link: '#', category: 'This Week' },
             { id: 2, icon: '🎉', title: 'The colloseum is Announced !', timestamp: new Date('2025-10-16T20:28:00'), read: false, link: '#', category: 'New' },
@@ -60,12 +53,10 @@
             { id: 6, icon: '📚', title: 'Your reserved book "Data Structures and Algorithms" is now available in the library.', timestamp: new Date('2025-10-14T18:00:00'), read: true, link: '#', category: 'This Week' },
         ];
 
-        // --- DOM ELEMENTS ---
         const notificationList = document.getElementById('notification-list');
         const emptyState = document.getElementById('empty-state');
         const markAllReadBtn = document.getElementById('mark-all-read');
 
-        // --- TIME FORMATTING HELPER ---
         function formatTimeAgo(date) {
             const now = new Date();
             const seconds = Math.floor((now - date) / 1000);
@@ -82,14 +73,11 @@
             return "Just now";
         }
 
-        // --- CORE LOGIC ---
         function renderNotifications() {
             notificationList.innerHTML = '';
             let currentCategory = '';
 
             if (notificationsData.length === 0 || notificationsData.every(n => n.read)) {
-                // Show empty state if no notifications or all are read for a cleaner look
-                // For a persistent list, you could remove the `every` check.
                 emptyState.classList.remove('hidden');
                 notificationList.classList.add('hidden');
                 return;
@@ -99,7 +87,6 @@
             notificationList.classList.remove('hidden');
 
             notificationsData.forEach(notif => {
-                // Add category headers
                 if (notif.category !== currentCategory) {
                     currentCategory = notif.category;
                     const categoryHeader = document.createElement('h4');
@@ -108,7 +95,6 @@
                     notificationList.appendChild(categoryHeader);
                 }
                 
-                // Create notification item
                 const notifLink = document.createElement('a');
                 notifLink.href = notif.link;
                 notifLink.className = `flex items-start p-4 hover:bg-gray-50 dark:hover:bg-slate-700 relative ${!notif.read ? 'unread-dot' : ''}`;
@@ -143,31 +129,24 @@
             renderNotifications();
         }
 
-        // --- EVENT LISTENERS ---
         markAllReadBtn.addEventListener('click', markAllAsRead);
         
-        // Mark as read on click
         notificationList.addEventListener('click', (e) => {
             const notifElement = e.target.closest('a');
             if (notifElement) {
-                e.preventDefault(); // Prevent navigating if it's just a placeholder link
+                e.preventDefault(); 
                 const notifId = parseInt(notifElement.dataset.id);
                 const notification = notificationsData.find(n => n.id === notifId);
                 if (notification && !notification.read) {
                     notification.read = true;
-                    // You can add a visual effect before re-rendering
                     notifElement.classList.remove('unread-dot');
-                    // Or just re-render the whole list for simplicity
                     renderNotifications(); 
                 }
-                // In a real app, you would navigate to notifElement.href here
             }
         });
 
-        // Initial Render
         document.addEventListener('DOMContentLoaded', renderNotifications);
 
     </script>
 </body>
 </html>
-
